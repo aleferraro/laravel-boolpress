@@ -1,0 +1,11 @@
+Ciao ragazzi! Oggi pomeriggio avviamo un nuovo progetto, di nome laravel-boolpress 
+
+In questo progetto dovete inizializzare gli elementi necessari per gestire i processi di autenticazione; ovviamente usate il comando automatico visto a lezione. Una volta fatto funzionare e testato il processo di creazione di un nuovo utente, aggiungete un controller TestController e definite due azioni
+1. guest() - e' una azione che possono utilizzare tutti gli utenti, sia loggati che non
+2. logged() - e' una azione che solo gli utenti loggati possono usare
+
+La rotta che porta all'azione (1) e' /free-zone/hello, mentre la rotta che porta all'azione (2) e' /restricted-zone/hello. La vista che viene usata per entrambe le azioni e' la stessa e deve
+1. per la rotta senza autenticazione, stampare nella pagina il messaggio: 'Ciao utente non autenticato!'
+2. per la rotta con autenticazione, stampare nella pagina il messaggio: 'Ciao ${nome_utente}!', dove ${nome_utente} e' il nome dell'utente preso dalle informzioni derivate dall'autenticazione effettuata
+
+Domani continueremo con il discorso e faremo pratica. Buon pomeriggio e buon lavoro!
