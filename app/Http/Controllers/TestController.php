@@ -11,11 +11,13 @@ class TestController extends Controller
 {
     public function guest()
     {   
-        if(Auth::check()){
+        /* if(Auth::check()){
             return redirect('restricted-zone/hello');
         } else{
             return view('hello');
-        }
+        } */
+
+        return view('hello');
        
     }
 

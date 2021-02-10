@@ -9,3 +9,19 @@ La rotta che porta all'azione (1) e' /free-zone/hello, mentre la rotta che porta
 2. per la rotta con autenticazione, stampare nella pagina il messaggio: 'Ciao ${nome_utente}!', dove ${nome_utente} e' il nome dell'utente preso dalle informzioni derivate dall'autenticazione effettuata
 
 Domani continueremo con il discorso e faremo pratica. Buon pomeriggio e buon lavoro!
+
+----------------------------------------------------------------
+
+Ciao ragazzi! Esercizio da completare per giovedi:
+
+Facendo riferimento alle specifiche del progetto laravel-boolpress-base lasciate nei giorni scorsi , realizzate in laravel-boolpress le stesse specifiche, con in piu l'autenticazione che avete gia realizzato ieri. 
+L'obiettivo di questa esercitazione e' quello di permettere l'utilizzo delle azioni di creazione, aggiornamento e cancellazione di un Post ai soli utenti autenticati, lasciando invece le azioni di visualizzazione aperte anche agli utenti che non lo sono.
+
+Fate attenzione a fare copia / incolla del codice che avete gia scritto in un progetto per portarlo nell'altro! Il mio consiglio e` questo... Partendo dal progetto di ieri, evitate di fare copia / incolla di codice, ma rimettetevi a generare elemento per elemento quanto necessario a realizzare una versione di laravel-boolpress-base che in piu integra un processo di autenticazione e protezione sulle rotte menzionate sopra.
+Questo e' un ottimo modo per:
+- esercitarvi sulla scrittura di codice
+- confrontarvi con gli errori / eccezioni che sopraggiungono inesorabilmente e come risolverli
+- porvi questioni del tipo quale sia l'approccio migliore in questo contesto e quali altre alternative ho per farlo
+- allenarvi a fare ricerche su questioni non viste fino ad ora
+che, alla fine dei conti, e' essenzialmente cio' che conta saper fare per svolgere al meglio questo mestiere.
+A domani, buon lavoro

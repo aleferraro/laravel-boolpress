@@ -29,6 +29,7 @@ Route::prefix('free-zone')
 });
 
 Route::prefix('restricted-zone')
+    ->middleware('auth')
     ->group(function () {
     Route::get('hello', 'TestController@logged')
 
