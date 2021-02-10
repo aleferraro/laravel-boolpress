@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Str;
 
 
 use App\Post;
@@ -27,7 +27,6 @@ class PostController extends Controller
 
         $user = Auth::user();
 
-
         return view('post.index', compact('posts', 'user'));
     }
 
@@ -38,7 +37,11 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('post.create', compact('categories', 'tags'));
+
     }
 
     /**
@@ -48,8 +51,39 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $user = Auth::user();
+
+        $newPost = new Post();
+
+        $newPost->title = $request->title;
+        $newPost->user_id = $user->id;
+        $newPost->category_id = $request->category;
+
+        $newPost->save();
+
+        $postId = $newPost->id;
+
+
+        $newPostInformation = new PostInformation();
+
+        $newPostInformation->post_id = $postId;
+        $newPostInformation->description = $request->description;
+        $newPostInformation->slug = Str::slug($newPost->title, '-');
+
+        $newPostInformation->save();
+
+
+        foreach ($request->tags as $tag){
+
+            DB::table('post_tag')->insert([
+                'post_id' => $postId,
+                'tag_id' => $tag
+            ]);
+
+        };
+
+        return view('post.store');
     }
 
     /**

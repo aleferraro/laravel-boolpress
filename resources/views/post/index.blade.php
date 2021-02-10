@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 @if (isset($user))
-                    <a class="post-action btn btn-outline-success" href="#" role="button">Crea Nuovo Post</a>
+                    <a class="post-action btn btn-outline-success" href="{{ route('post.create') }}" role="button">Crea Nuovo Post</a>
                 @endif
             </div>
         </div>
