@@ -6,3 +6,15 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+.post {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    
+    .post-action {
+        display: inline-block;
+        float: right;
+        margin-left: 1rem;
+    }
+}

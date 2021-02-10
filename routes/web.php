@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/post');
 });
 
 Auth::routes();
@@ -35,3 +35,5 @@ Route::prefix('restricted-zone')
 
     ->name('loggedHome');
 });
+
+Route::resource('post', 'PostController');
