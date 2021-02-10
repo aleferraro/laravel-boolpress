@@ -1,22 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-
-                    <div class="card-body">
-
-                        @if (isset($user))
-                            Ciao {{ $user->name }}!
-                        @else
-                            Ciao utente!
-                        @endif
-
-                    </div>
-                    
-                </div>
+                @if (isset($user))
+                    <a class="post-action btn btn-outline-success" href="#" role="button">Crea Nuovo Post</a>
+                @endif
             </div>
         </div>
     </div>
@@ -29,10 +20,14 @@
                     <div class="card post">
                         <div class="card-header">
                             <strong>{{ $post->title }}</strong>
-                            <form action="" class="post-action">
-                                <button type="submit" class="btn btn-outline-danger">Elimina</button>
-                            </form>
-                            <a class="post-action btn btn-outline-success" href="#" role="button">Modifica</a>
+                            @if (isset($user))
+                                <form action="{{ route('post.destroy', $post->id) }}" method="POST" class="post-action">
+                                    @csrf
+                                    @method("DELETE")
+                                    <button type="submit" class="btn btn-outline-danger">Elimina</button>
+                                </form>
+                                <a class="post-action btn btn-outline-primary" href="#" role="button">Modifica</a>
+                            @endif
                         </div>
                         <div class="card-body">
                             {{ $post->postInformation->description }}

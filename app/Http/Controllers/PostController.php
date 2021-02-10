@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
+
 
 use App\Post;
 use App\PostInformation;
@@ -21,7 +25,10 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return view('post.index', compact('posts'));
+        $user = Auth::user();
+
+
+        return view('post.index', compact('posts', 'user'));
     }
 
     /**
@@ -89,6 +96,12 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $postTags = DB::table('post_tag')->where('post_id', '=', $id)->delete();
+
+        PostInformation::where('post_id', '=', $id)->delete();
+
+        Post::destroy($id);
+
+        return view('post.destroy');
     }
 }

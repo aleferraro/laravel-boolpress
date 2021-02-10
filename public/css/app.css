@@ -10949,8 +10949,7 @@ a.text-dark:focus {
   margin-bottom: 1rem;
 }
 
-.post .post-action {
-  display: inline-block;
+.post-action {
   float: right;
   margin-left: 1rem;
 }
