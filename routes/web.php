@@ -36,4 +36,6 @@ Route::prefix('restricted-zone')
     ->name('loggedHome');
 });
 
-Route::resource('post', 'PostController');
+Route::resource('post', 'PostController')->except('index', 'show')->middleware('auth');
+
+Route::resource('post', 'PostController')->only('index', 'show');

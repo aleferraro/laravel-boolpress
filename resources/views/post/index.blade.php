@@ -26,7 +26,7 @@
                                     @method("DELETE")
                                     <button type="submit" class="btn btn-outline-danger">Elimina</button>
                                 </form>
-                                <a class="post-action btn btn-outline-primary" href="#" role="button">Modifica</a>
+                                <a class="post-action btn btn-outline-primary" href="{{ route('post.edit', $post->id) }}" role="button">Modifica</a>
                             @endif
                         </div>
                         <div class="card-body">

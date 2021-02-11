@@ -16,6 +16,15 @@ use App\User;
 
 class PostController extends Controller
 {
+
+    public function __construct() {
+        /*$this->middleware('auth', [
+            'except' => [
+                'index', 'show'
+            ]
+        ]);*/
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,7 +48,8 @@ class PostController extends Controller
     {
         $categories = Category::all();
         $tags = Tag::all();
-
+        //return 'CIAO';
+        //dd($tags);
         return view('post.create', compact('categories', 'tags'));
 
     }
@@ -107,7 +117,14 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        
+
+
+        return view('post.edit', compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -119,7 +136,51 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = Auth::user();
+        $post = Post::find($id);
+
+        $postTagsId = [];
+
+        foreach ($post->tags as $postTag){
+            array_push($postTagsId, $postTag->id);
+        }
+
+
+        foreach ($request->tags as $tag){
+            
+            if(!in_array($tag, $postTagsId)){
+                DB::table('post_tag')->insert([
+                    'post_id' => $post->id,
+                    'tag_id' => $tag
+                ]);
+            };
+        }
+
+        foreach ($postTagsId as $postTag){
+            if(!in_array($postTag, $request->tags)){
+                DB::table('post_tag')->where('post_id', $post->id)->where('tag_id', $postTag)->delete();
+            };
+        }
+
+        
+
+        $postData = [
+            'title' => $request->title,
+            'user_id' => $user->id,
+            'category_id' => $request->category,
+        ];
+
+        $post->update($postData);
+
+        $postInformation = PostInformation::where('post_id', '=', $id);
+
+        $postinfoData = [
+            'description' => $request->description,
+        ];
+
+        $postInformation->update($postinfoData);
+
+        return view('post.update');
     }
 
     /**
